@@ -33,4 +33,4 @@ build/
 .vscode/
 
 # Ignore Firebase secret JSON
-/music/src/main/resources/appmusic-2f719-firebase-adminsdk-fbsvc-6d3f3a402f.json
+src/main/resources/appmusic-2f719-firebase-adminsdk-fbsvc-6d3f3a402f.json
