@@ -15,11 +15,11 @@ services:
       - JWT_EXPIRATION=${JWT_EXPIRATION}
       - FIREBASE_BUCKET=${FIREBASE_BUCKET}
     depends_on:
-      - mysql
+      - mysql-8.0.41
     networks:
       - app-network
 
-  mysql:
+  mysql-8.0.41:
     image: mysql:8.0.41-debian
     environment:
       MYSQL_ROOT_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
