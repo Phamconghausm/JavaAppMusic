@@ -26,7 +26,7 @@ public class FirebaseConfig {
 
         FirebaseOptions options = FirebaseOptions.builder()
                 .setCredentials(GoogleCredentials.fromStream(serviceAccount))
-                .setStorageBucket("appmusic-2f719.appspot.com")
+                .setStorageBucket("appmusic-2f719.firebasestorage.app")
                 .build();
 
         if (FirebaseApp.getApps().isEmpty()) {
