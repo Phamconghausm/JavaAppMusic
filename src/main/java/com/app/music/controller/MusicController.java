@@ -18,10 +18,17 @@ public class MusicController {
     private MusicService musicService;
 
     @PostMapping("/upload")
-    public ResponseEntity<?> upload(@RequestParam("file") MultipartFile file) throws IOException {
-        Music music = musicService.uploadMusic(file);
+    public ResponseEntity<?> upload(
+            @RequestParam("file") MultipartFile file,
+            @RequestParam("title") String title,
+            @RequestParam("genre") String genre,
+            @RequestParam(value = "caption", required = false) String caption,
+            @RequestParam(value = "public", required = false, defaultValue = "false") Boolean isPublic
+    ) throws IOException {
+        Music music = musicService.uploadMusic(file, title, genre, caption, isPublic);
         return ResponseEntity.ok(music);
     }
+
 
     @GetMapping("/list")
     public ResponseEntity<?> list() {
@@ -39,5 +46,32 @@ public class MusicController {
     public ResponseEntity<?> search(@RequestParam String keyword) {
         return ResponseEntity.ok(musicService.search(keyword));
     }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> delete(@PathVariable Long id) {
+        try {
+            musicService.deleteMusic(id);
+            return ResponseEntity.ok("Xóa bài hát thành công");
+        } catch (IOException e) {
+            return ResponseEntity.badRequest().body("Lỗi khi xóa bài hát: " + e.getMessage());
+        }
+    }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<?> update(
+            @PathVariable Long id,
+            @RequestParam String title,
+            @RequestParam String genre,
+            @RequestParam(required = false) String caption,
+            @RequestParam(defaultValue = "false") Boolean isPublic
+    ) {
+        try {
+            Music updated = musicService.updateMusic(id, title, genre, caption, isPublic);
+            return ResponseEntity.ok(updated);
+        } catch (IOException e) {
+            return ResponseEntity.badRequest().body("Lỗi khi cập nhật: " + e.getMessage());
+        }
+    }
+
 }
 

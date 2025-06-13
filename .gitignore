@@ -32,7 +32,7 @@ build/
 ### VS Code ###
 .vscode/
 
-src/main/resources/appmusic-2f719-firebase-adminsdk-fbsvc-6d3f3a402f.json
+src/main/resources/music-32439-firebase-adminsdk-fbsvc-5737224925.json
 
 .env
 
